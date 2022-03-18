@@ -1,8 +1,14 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.scss";
+import logo from "../assets/logo.svg";
+import "../styles/App.scss";
+import useSWR from "swr";
+import { fetcher } from "../helper/apiHelper";
 
 const App: React.FC = () => {
+  const { data, error } = useSWR(`https://pokeapi.co/api/v2/  `, fetcher);
+
+  console.log(data);
+
   return (
     <div className="App">
       <header className="App-header">
