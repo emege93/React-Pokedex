@@ -9,9 +9,14 @@
   font-family: "Press Start 2P", cursive;
   font-size: 10px;
   display: flex;
-  width: 100%;
   justify-content: space-around;
   margin-bottom: 10%;
+  flex-direction: column-reverse;
+
+  @media screen and (min-device-width: 480px) {
+    flex-direction: row;
+    width: 100%;
+  }
 
   > div {
     display: flex;

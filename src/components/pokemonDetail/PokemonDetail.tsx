@@ -18,7 +18,7 @@ export const PokemonDetail = ({ pokemon }: { pokemon: PokemonDetails }) => {
   return (
     <div
       className={`content ${
-        pokemon && setBackgroundColor(pokemon.types[0].type.name)
+        pokemon ? setBackgroundColor(pokemon.types[0].type.name) : ""
       }
     `}
     >
