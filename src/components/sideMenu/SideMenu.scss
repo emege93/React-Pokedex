@@ -1,0 +1,15 @@
+$side-nav-width: 300px;
+
+.side-menu {
+  justify-content: flex-end;
+  font-family: "Press Start 2P", cursive;
+  font-size: 14px;
+  height: 100%;
+  width: $side-nav-width;
+  min-width: $side-nav-width;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 0 12px 0 grey;
+}

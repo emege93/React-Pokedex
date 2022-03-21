@@ -1,0 +1,30 @@
+.pokemon-name {
+  font-family: "Press Start 2P", cursive;
+  font-size: 30px;
+  color: white;
+  text-align: center;
+}
+
+.pokemon-info-container {
+  font-family: "Press Start 2P", cursive;
+  font-size: 10px;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  margin-bottom: 10%;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+
+    > div {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+  }
+
+  > :nth-child(2) {
+    align-items: flex-end;
+  }
+}

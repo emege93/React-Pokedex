@@ -1,31 +1,53 @@
-import React from "react";
-import logo from "../assets/logo.svg";
+import React, { useEffect, useState } from "react";
+import type { Pokemon } from "../interface/pokemon.interface";
+import { usePokemonList } from "../hooks/usePokemonList";
+import { usePokemonDetails } from "../hooks/usePokemonDetails";
+import { SideMenu } from "../components/sideMenu/SideMenu";
+import { PokemonDetail } from "../components/pokemonDetail/PokemonDetail";
+import { ButtonGroup } from "../components/button/buttonGroup/ButtonGroup";
+import { PokemonList } from "../components/pokemonList/PokemonList";
 import "../styles/App.scss";
-import useSWR from "swr";
-import { fetcher } from "../helper/apiHelper";
 
 const App: React.FC = () => {
-  const { data, error } = useSWR(`https://pokeapi.co/api/v2/  `, fetcher);
+  const offSetStep = 25;
 
-  console.log(data);
+  const [offSet, setOffSet] = useState(0);
+  const [pokemons, setPokemons] = useState<Pokemon[]>();
+  const [selectedPokemon, setSelectedPokemon] = useState<string>();
+
+  const { pokemonList } = usePokemonList(offSet);
+  const { pokemon } = usePokemonDetails(selectedPokemon);
+
+  useEffect(() => {
+    setPokemons(pokemonList?.results);
+  }, [pokemonList?.results]);
+
+  function handleOnBack() {
+    if (offSet === 0) return;
+    setOffSet(offSet - offSetStep);
+  }
+
+  function handleOnNext() {
+    setOffSet(offSet + offSetStep);
+  }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className="root">
+      <div className="main">
+        <SideMenu
+          content={
+            pokemons && (
+              <PokemonList
+                pokemons={pokemons}
+                setPokemon={setSelectedPokemon}
+              />
+            )
+          }
+          footer={<ButtonGroup onNext={handleOnNext} onBack={handleOnBack} />}
+        />
+        <PokemonDetail pokemon={pokemon} />
+      </div>
+    </main>
   );
 };
 

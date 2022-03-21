@@ -1,0 +1,33 @@
+.progress-bar-container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.progress-bar {
+  background: #dee2e3;
+  border-radius: 99px;
+  width: 200px;
+  height: 20px;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    border-radius: 99px;
+    position: absolute;
+    height: 20px;
+    background: #f5c70f;
+    content: "";
+    width: 0;
+    transition: width 0.2s;
+  }
+}
+
+$start: 0;
+$end: 200;
+
+@for $i from $end through $start {
+  .w-#{$i}::before {
+    width: $i * 1%;
+  }
+}
