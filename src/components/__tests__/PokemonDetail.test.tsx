@@ -7,8 +7,8 @@ const setup = () => {
   return render(<PokemonDetail pokemon={pokemonDetailsMock} />) as RenderResult;
 };
 
-describe("PokeApp", () => {
-  it("renders PokeApp", () => {
+describe("PokemonDetails", () => {
+  it("should see the pokemon details", () => {
     const { getByText, getAllByText, debug } = setup();
 
     debug();
